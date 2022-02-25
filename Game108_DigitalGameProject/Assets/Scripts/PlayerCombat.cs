@@ -30,7 +30,7 @@ public class PlayerCombat : MonoBehaviour
 
     void AttackHigh()
     {
-        //Debug.Log("High Attack");
+        Debug.Log("High Attack");
         //Play an attack animation
 
         //Detect enemies in range of attack
@@ -41,7 +41,7 @@ public class PlayerCombat : MonoBehaviour
 
     void AttackMid()
     {
-        //Debug.Log("Mid attack");
+        Debug.Log("Mid attack");
         //Play an attack animation
 
         //Detect enemies in range of attack
@@ -52,7 +52,7 @@ public class PlayerCombat : MonoBehaviour
 
     void AttackLow()
     {
-        //Debug.Log("Low attack");
+        Debug.Log("Low attack");
         //Play an attack animation
 
         //Detect enemies in range of attack
