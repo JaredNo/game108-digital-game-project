@@ -643,7 +643,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 10, y: 10}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -657,8 +657,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 987447432}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.0288, y: -0.2227, z: 0}
-  m_LocalScale: {x: 2.751615, y: 2.7920082, z: 1}
+  m_LocalPosition: {x: -6.62, y: 0.34, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8143248}
   - {fileID: 1959192010}
@@ -679,6 +679,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 987447439}
+  Animator: {fileID: 987447441}
   runSpeed: 40
   fallVelocity: 20
 --- !u!58 &987447437
@@ -694,9 +695,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.21283811}
+  m_Offset: {x: 0, y: -0.11649972}
   serializedVersion: 2
-  m_Radius: 0.28704378
+  m_Radius: 0.44007045
 --- !u!58 &987447438
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -710,9 +711,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.21}
+  m_Offset: {x: 0, y: 0.5992472}
   serializedVersion: 2
-  m_Radius: 0.2870438
+  m_Radius: 0.73147845
 --- !u!114 &987447439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -737,10 +738,34 @@ MonoBehaviour:
   m_CrouchDisableCollider: {fileID: 987447438}
   OnLandEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 987447436}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: OnLanding
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnCrouchEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 987447436}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: OnCrouching
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &987447440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -844,9 +869,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.21283811}
+  m_Offset: {x: 0, y: -1.1073648}
   serializedVersion: 2
-  m_Radius: 0.28704378
+  m_Radius: 1.8297979
 --- !u!58 &1267330267
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -860,9 +885,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.2128381}
+  m_Offset: {x: 0, y: 1.7540442}
   serializedVersion: 2
-  m_Radius: 0.2870438
+  m_Radius: 1.2370039
 --- !u!114 &1267330268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -948,7 +973,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 10, y: 10}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -962,8 +987,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1267330263}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.31, y: -0.11, z: 0}
-  m_LocalScale: {x: 2.751615, y: 2.792008, z: 1}
+  m_LocalPosition: {x: 5.02, y: 0.29, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 603254171}
   - {fileID: 367556287}
