@@ -34,8 +34,13 @@ public class PlayerCombat : MonoBehaviour
         //Play an attack animation
 
         //Detect enemies in range of attack
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPointHigh.position, attackRange, enemyLayers);
 
         //Deal damage
+        foreach(Collider2D enemy in hitEnemies)
+        {
+            Debug.Log("Hit" + enemy.name);
+        }
 
     }
 
@@ -45,8 +50,13 @@ public class PlayerCombat : MonoBehaviour
         //Play an attack animation
 
         //Detect enemies in range of attack
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPointMid.position, attackRange, enemyLayers);
 
         //Deal damage
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            Debug.Log("Hit" + enemy.name);
+        }
 
     }
 
@@ -56,8 +66,23 @@ public class PlayerCombat : MonoBehaviour
         //Play an attack animation
 
         //Detect enemies in range of attack
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPointLow.position, attackRange, enemyLayers);
 
         //Deal damage
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            Debug.Log("Hit" + enemy.name);
+        }
 
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (attackPointHigh == null || attackPointMid == null || attackPointLow == null)
+            return;
+
+        Gizmos.DrawWireSphere(attackPointHigh.position, attackRange);
+        Gizmos.DrawWireSphere(attackPointMid.position, attackRange);
+        Gizmos.DrawWireSphere(attackPointLow.position, attackRange);
     }
 }
