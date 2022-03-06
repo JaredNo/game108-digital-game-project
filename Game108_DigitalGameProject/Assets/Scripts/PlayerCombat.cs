@@ -6,25 +6,46 @@ public class PlayerCombat : MonoBehaviour
 {
     //public Animator animator;
 
+    public float attackDamage;
+
     public Transform attackPointHigh;
     public Transform attackPointMid;
     public Transform attackPointLow;
 
     public float attackRange = 0.5f;
 
+    public float maxHealth;
+    float currentHealth;
+
     public LayerMask enemyLayers;
+
+    public float attackRate;
+    float nextAttackTime;
+
+    void Start()
+    {
+        currentHealth = maxHealth;
+    }
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire1") && Input.GetKey(KeyCode.W))
+        if (Time.time >= nextAttackTime)
         {
-            AttackHigh();
-        } else if (Input.GetButtonDown("Fire1") && Input.GetButton("Crouch"))
-        {
-            AttackLow();
-        } else if (Input.GetButtonDown("Fire1"))
-        {
-            AttackMid();
+            if (Input.GetButtonDown("Fire1") && Input.GetKey(KeyCode.W))
+            {
+                AttackHigh();
+                nextAttackTime = Time.time + 1f / attackRate;
+            }
+            else if (Input.GetButtonDown("Fire1") && Input.GetButton("Crouch"))
+            {
+                AttackLow();
+                nextAttackTime = Time.time + 1f / attackRate;
+            }
+            else if (Input.GetButtonDown("Fire1"))
+            {
+                AttackMid();
+                nextAttackTime = Time.time + 1f / attackRate;
+            }
         }
     }
 
@@ -40,6 +61,7 @@ public class PlayerCombat : MonoBehaviour
         foreach(Collider2D enemy in hitEnemies)
         {
             Debug.Log("Hit" + enemy.name);
+            enemy.GetComponent<Player2Combat>().TakeDamage(attackDamage);
         }
 
     }
@@ -56,6 +78,7 @@ public class PlayerCombat : MonoBehaviour
         foreach (Collider2D enemy in hitEnemies)
         {
             Debug.Log("Hit" + enemy.name);
+            enemy.GetComponent<Player2Combat>().TakeDamage(attackDamage);
         }
 
     }
@@ -72,8 +95,27 @@ public class PlayerCombat : MonoBehaviour
         foreach (Collider2D enemy in hitEnemies)
         {
             Debug.Log("Hit" + enemy.name);
+            enemy.GetComponent<Player2Combat>().TakeDamage(attackDamage);
         }
 
+    }
+
+    public void TakeDamage(float damage)
+    {
+        currentHealth -= damage;
+
+        //play hurt animation
+
+        if (currentHealth <= 0)
+            Die();
+    }
+
+    void Die()
+    {
+        Debug.Log("" + this.name + " died");
+        GetComponent<SpriteRenderer>().enabled = false; //this is just a debug line to see the player disapear
+
+        //Play death animation
     }
 
     private void OnDrawGizmosSelected()
