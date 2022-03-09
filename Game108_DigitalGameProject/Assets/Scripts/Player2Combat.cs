@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player2Combat : MonoBehaviour
 {
-    //public Animator animator;
+    public Animator Animator;
 
     public float attackDamage;
 
@@ -52,7 +52,7 @@ public class Player2Combat : MonoBehaviour
     void AttackHigh()
     {
         Debug.Log("High Attack");
-        //Play an attack animation
+        Animator.SetTrigger("High Hit");
 
         //Detect enemies in range of attack
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPointHigh.position, attackRange, enemyLayers);
@@ -69,7 +69,7 @@ public class Player2Combat : MonoBehaviour
     void AttackMid()
     {
         Debug.Log("Mid attack");
-        //Play an attack animation
+        Animator.SetTrigger("Mid Hit");
 
         //Detect enemies in range of attack
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPointMid.position, attackRange, enemyLayers);
