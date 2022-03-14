@@ -86,7 +86,7 @@ public class Player2Combat : MonoBehaviour
     void AttackLow()
     {
         Debug.Log("Low attack");
-        //Play an attack animation
+        Animator.SetTrigger("Low Hit");
 
         //Detect enemies in range of attack
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPointLow.position, attackRange, enemyLayers);
@@ -104,7 +104,7 @@ public class Player2Combat : MonoBehaviour
     {
         currentHealth -= damage;
 
-        //play hurt animation
+        Animator.SetTrigger("Mid Hurt");
 
         if (currentHealth <= 0)
             Die();

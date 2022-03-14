@@ -778,6 +778,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ffb2cc31892b65449cfb7d0baa371d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 987447441}
   attackDamage: 25
   attackPointHigh: {fileID: 399045645}
   attackPointMid: {fileID: 288434875}
