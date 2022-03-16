@@ -30,10 +30,22 @@ public class Player2Combat : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
+        slider.maxValue = maxHealth;
+        slider.value = currentHealth;
     }
 
     void Update()
     {
+        if (currentHealth < slider.value)
+        {
+            slider.value--;
+            if (slider.value <= 0)
+            {
+                this.GetComponent<Player2Movement>().enabled = false;
+                this.enabled = false;
+            }
+        }
+
         if (Time.time >= nextAttackTime)
         {
             if (Input.GetButtonDown("Fire2") && Input.GetKey(KeyCode.UpArrow))
@@ -119,7 +131,7 @@ public class Player2Combat : MonoBehaviour
 
     public void TakeDamageMid(float damage)
     {
-        currentHealth -= damage;
+        currentHealth -= damage/2;
 
         Animator.SetTrigger("Mid Hurt");
 
