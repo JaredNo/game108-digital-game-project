@@ -5,8 +5,9 @@ using UnityEngine.UI;
 
 public class PlayerCombat : MonoBehaviour
 {
+    Rigidbody2D rb;
     public Animator animator;
-
+    public float thrust;
     public float attackDamage;
 
     public GameObject otherPlayer;
@@ -36,6 +37,7 @@ public class PlayerCombat : MonoBehaviour
 
     void Update()
     {
+
         if (currentHealth < slider.value)
         {
             slider.value--;
@@ -179,5 +181,11 @@ public class PlayerCombat : MonoBehaviour
         Gizmos.DrawWireSphere(attackPointHigh.position, attackRange);
         Gizmos.DrawWireSphere(attackPointMid.position, attackRange);
         Gizmos.DrawWireSphere(attackPointLow.position, attackRange);
+
+
+        void FixedUpdate()
+        {
+            rb.AddForce(transform.up * thrust, ForceMode2D.Impulse);
+        }
     }
 }

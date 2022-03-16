@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public float thrust;
     public CharacterController2D controller;
     Rigidbody2D rb;
     public Animator Animator;
@@ -54,6 +55,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+
         controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
         jump = false;
 

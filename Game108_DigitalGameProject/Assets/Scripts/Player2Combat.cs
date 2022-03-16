@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class Player2Combat : MonoBehaviour
 {
+    Rigidbody2D rb;
+    public float thrust;
     public Animator Animator;
 
     public float attackDamage;
@@ -171,5 +173,10 @@ public class Player2Combat : MonoBehaviour
         Gizmos.DrawWireSphere(attackPointHigh.position, attackRange);
         Gizmos.DrawWireSphere(attackPointMid.position, attackRange);
         Gizmos.DrawWireSphere(attackPointLow.position, attackRange);
+    }
+
+    private void FixedUpdate()
+    {
+        rb.AddForce(transform.up * thrust, ForceMode2D.Impulse);
     }
 }

@@ -1772,6 +1772,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b57a13f353fdc2c48ab1ae496921d95a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thrust: 0
   controller: {fileID: 987447439}
   Animator: {fileID: 987447441}
   runSpeed: 50
@@ -1873,6 +1874,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 987447441}
+  thrust: 200
   attackDamage: 10
   otherPlayer: {fileID: 1267330263}
   attackPointHigh: {fileID: 399045645}
@@ -2359,6 +2361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc8881313b09cf146aa9d29623057bc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thrust: 200
   Animator: {fileID: 1267330273}
   attackDamage: 10
   otherPlayer: {fileID: 987447432}
