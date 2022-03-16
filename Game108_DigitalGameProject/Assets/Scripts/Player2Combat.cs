@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player2Combat : MonoBehaviour
 {
     public Animator Animator;
 
     public float attackDamage;
+
+    public GameObject otherPlayer;
 
     public Transform attackPointHigh;
     public Transform attackPointMid;
@@ -21,6 +24,8 @@ public class Player2Combat : MonoBehaviour
 
     public float attackRate;
     float nextAttackTime;
+
+    public Slider slider;
 
     void Start()
     {
@@ -62,7 +67,7 @@ public class Player2Combat : MonoBehaviour
         foreach (Collider2D enemy in hitEnemies)
         {
             Debug.Log("Hit" + enemy.name);
-            enemy.GetComponent<PlayerCombat>().TakeDamage(attackDamage);
+            enemy.GetComponent<PlayerCombat>().TakeDamageHigh(attackDamage);
         }
 
     }
@@ -80,7 +85,7 @@ public class Player2Combat : MonoBehaviour
         foreach (Collider2D enemy in hitEnemies)
         {
             Debug.Log("Hit" + enemy.name);
-            enemy.GetComponent<PlayerCombat>().TakeDamage(attackDamage);
+            enemy.GetComponent<PlayerCombat>().TakeDamageMid(attackDamage);
         }
 
     }
@@ -97,12 +102,22 @@ public class Player2Combat : MonoBehaviour
         foreach (Collider2D enemy in hitEnemies)
         {
             Debug.Log("Hit" + enemy.name);
-            enemy.GetComponent<PlayerCombat>().TakeDamage(attackDamage);
+            enemy.GetComponent<PlayerCombat>().TakeDamageLow(attackDamage);
         }
 
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamageHigh(float damage)
+    {
+        currentHealth -= damage;
+
+        
+
+        if (currentHealth <= 0)
+            Die();
+    }
+
+    public void TakeDamageMid(float damage)
     {
         currentHealth -= damage;
 
@@ -112,12 +127,28 @@ public class Player2Combat : MonoBehaviour
             Die();
     }
 
+    public void TakeDamageLow(float damage)
+    {
+        currentHealth -= damage;
+
+        
+
+        if (currentHealth <= 0)
+            Die();
+    }
+
     void Die()
     {
         Debug.Log("" + this.name + " died");
-        GetComponent<SpriteRenderer>().enabled = false; //this is just a debug line to see the player disapear
+        otherPlayer.GetComponent<PlayerCombat>().Victory();
 
         //Play death animation
+    }
+
+    public void Victory()
+    {
+        // play victory animation
+
     }
 
     private void OnDrawGizmosSelected()
