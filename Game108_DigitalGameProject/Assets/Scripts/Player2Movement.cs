@@ -4,17 +4,9 @@ using UnityEngine;
 
 public class Player2Movement : MonoBehaviour
 {
-    public static Player2Movement instance;
-
-    public float knockbackPower = 100;
-    public float knockbackDuration = 1;
     public CharacterController2D controller;
-
-    private void Awake() => instance = Player2Movement;
-
     Rigidbody2D rb;
     public Animator animator;
-    private Vector2 moveInput;
 
     float horizontalMove = 0f;
     public float runSpeed;
@@ -31,7 +23,6 @@ public class Player2Movement : MonoBehaviour
 
     void Update()
     {
-        
         horizontalMove = Input.GetAxisRaw("Horizontal2") * runSpeed;
 
         animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
@@ -50,14 +41,6 @@ public class Player2Movement : MonoBehaviour
         else if (Input.GetButtonUp("Crouch2"))
         {
             crouch = false;
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Player 2")
-        {
-            StartCoroutine(Player2Movement.instance.Knockback(knockbackDuration, knockbackPower, this.transform));
         }
     }
 
@@ -80,20 +63,5 @@ public class Player2Movement : MonoBehaviour
         {
             rb.velocity += Vector2.up * Physics2D.gravity.y * fallVelocity * Time.deltaTime;
         }
-    }
-    //Knockback code
-    public IEnumerator Knockback(float knockbackDuration, float knockbackPower, Transform obj)
-    {
-        float timer = 0;
-
-        while (knockbackDuration > timer)
-        {
-            timer += Time.deltaTime;
-            Vector2 direction = (obj.transform.position - transform.position).normalized;
-            rb.AddForce(-direction * knockbackPower);
-
-        }
-
-        yield return 0;
     }
 }
