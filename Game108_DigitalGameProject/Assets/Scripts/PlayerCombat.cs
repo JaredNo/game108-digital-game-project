@@ -41,7 +41,7 @@ public class PlayerCombat : MonoBehaviour
             slider.value--;
             if (slider.value <= 0)
             {
-                this.GetComponent<PlayerMovement>().enabled = false;
+                this.GetComponent<Player2Movement>().enabled = false;
                 this.enabled = false;
             }
         }
@@ -67,7 +67,7 @@ public class PlayerCombat : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            this.GetComponent<PlayerMovement>().enabled = false;
+            this.GetComponent<Player2Movement>().enabled = false;
         }
     }
 

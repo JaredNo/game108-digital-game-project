@@ -105,6 +105,7 @@ public class Player2Combat : MonoBehaviour
     void AttackLow()
     {
         Debug.Log("Low attack");
+
         Animator.SetTrigger("Low Hit");
 
         //Detect enemies in range of attack
@@ -123,7 +124,7 @@ public class Player2Combat : MonoBehaviour
     {
         currentHealth -= damage;
 
-        
+        Animator.SetTrigger("High Hurt");
 
         if (currentHealth <= 0)
             Die();
@@ -143,7 +144,7 @@ public class Player2Combat : MonoBehaviour
     {
         currentHealth -= damage;
 
-        
+        Animator.SetTrigger("Low Hurt");
 
         if (currentHealth <= 0)
             Die();

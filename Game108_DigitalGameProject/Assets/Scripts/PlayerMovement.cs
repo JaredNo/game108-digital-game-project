@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public static PlayerMovement instance;
+
+    public float knockbackPower = 100;
+    public float knockbackDuration = 1;
+
+    private void Awake() => instance = PlayerMovement;
+
     public CharacterController2D controller;
     Rigidbody2D rb;
     public Animator Animator;
@@ -36,18 +43,27 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Crouch"))
         {
             crouch = true;
-        } else if (Input.GetButtonUp("Crouch"))
+        }
+        else if (Input.GetButtonUp("Crouch"))
         {
             crouch = false;
         }
     }
 
-    public void OnLanding ()
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player 2")
+        {
+            StartCoroutine(Player2Movement.instance.Knockback(knockbackDuration, knockbackPower, this.transform));
+        }
+    }
+
+    public void OnLanding()
     {
         Animator.SetBool("IsJumping", false);
     }
 
-    public void OnCrouching (bool IsCrouching)
+    public void OnCrouching(bool IsCrouching)
     {
         Animator.SetBool("IsCrouching", IsCrouching);
     }
@@ -61,5 +77,20 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity += Vector2.up * Physics2D.gravity.y * fallVelocity * Time.deltaTime;
         }
+    }
+    //Knockback code
+    public IEnumerator Knockback(float knockbackDuration, float knockbackPower, Transform obj)
+    {
+        float timer = 0;
+
+        while (knockbackDuration > timer)
+        {
+            timer += Time.deltaTime;
+            Vector2 direction = (obj.transform.position - transform.position).normalized;
+            rb.AddForce(-direction * knockbackPower);
+
+        }
+
+        yield return 0;
     }
 }
