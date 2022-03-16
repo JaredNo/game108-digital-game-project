@@ -52,6 +52,7 @@ public class Player2Combat : MonoBehaviour
     void AttackHigh()
     {
         Debug.Log("High Attack");
+
         Animator.SetTrigger("High Hit");
 
         //Detect enemies in range of attack
@@ -69,6 +70,7 @@ public class Player2Combat : MonoBehaviour
     void AttackMid()
     {
         Debug.Log("Mid attack");
+
         Animator.SetTrigger("Mid Hit");
 
         //Detect enemies in range of attack
