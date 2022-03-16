@@ -129,7 +129,7 @@ public class PlayerCombat : MonoBehaviour
     {
         currentHealth -= damage;
 
-        
+        animator.SetTrigger("High Hurt");
 
         if (currentHealth <= 0)
             Die();
@@ -149,7 +149,7 @@ public class PlayerCombat : MonoBehaviour
     {
         currentHealth -= damage;
 
-        
+        animator.SetTrigger("Low Hurt");
 
         if (currentHealth <= 0)
             Die();
@@ -159,13 +159,15 @@ public class PlayerCombat : MonoBehaviour
     {
         Debug.Log("" + this.name + " died");
         otherPlayer.GetComponent<Player2Combat>().Victory();
-        //Play death animation
-        
+
+        animator.SetTrigger("Death");
+
     }
 
     public void Victory()
     {
-        //play victory animation
+
+        animator.SetTrigger("Victory");
 
     }
 

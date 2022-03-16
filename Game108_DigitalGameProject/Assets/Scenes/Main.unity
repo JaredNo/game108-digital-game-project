@@ -1643,7 +1643,7 @@ SpriteRenderer:
   m_Size: {x: 10, y: 10}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &987447435
@@ -1777,7 +1777,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 987447441}
   attackDamage: 25
-  otherPlayer: {fileID: 0}
+  otherPlayer: {fileID: 1267330263}
   attackPointHigh: {fileID: 399045645}
   attackPointMid: {fileID: 288434875}
   attackPointLow: {fileID: 387868455}
@@ -2264,7 +2264,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Animator: {fileID: 1267330273}
   attackDamage: 25
-  otherPlayer: {fileID: 0}
+  otherPlayer: {fileID: 987447432}
   attackPointHigh: {fileID: 1955713528}
   attackPointMid: {fileID: 758018416}
   attackPointLow: {fileID: 1428094134}
@@ -2392,7 +2392,7 @@ SpriteRenderer:
   m_Size: {x: 10, y: 10}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1267330271

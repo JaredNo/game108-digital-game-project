@@ -142,12 +142,12 @@ public class Player2Combat : MonoBehaviour
         Debug.Log("" + this.name + " died");
         otherPlayer.GetComponent<PlayerCombat>().Victory();
 
-        //Play death animation
+        Animator.SetTrigger("Death");
     }
 
     public void Victory()
     {
-        // play victory animation
+        Animator.SetTrigger("Victory");
 
     }
 
