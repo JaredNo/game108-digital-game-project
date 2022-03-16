@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerCombat : MonoBehaviour
 {
     public Animator animator;
 
     public float attackDamage;
+
+    public GameObject otherPlayer;
 
     public Transform attackPointHigh;
     public Transform attackPointMid;
@@ -22,13 +25,27 @@ public class PlayerCombat : MonoBehaviour
     public float attackRate;
     float nextAttackTime;
 
+    public Slider slider;
+
     void Start()
     {
         currentHealth = maxHealth;
+        slider.maxValue = maxHealth;
+        slider.value = currentHealth;
     }
 
     void Update()
     {
+        if (currentHealth < slider.value)
+        {
+            slider.value--;
+            if (slider.value <= 0)
+            {
+                this.GetComponent<PlayerMovement>().enabled = false;
+                this.enabled = false;
+            }
+        }
+
         if (Time.time >= nextAttackTime)
         {
             if (Input.GetButtonDown("Fire1") && Input.GetKey(KeyCode.W))
@@ -47,6 +64,11 @@ public class PlayerCombat : MonoBehaviour
                 nextAttackTime = Time.time + 1f / attackRate;
             }
         }
+
+        if (currentHealth <= 0)
+        {
+            this.GetComponent<PlayerMovement>().enabled = false;
+        }
     }
 
     void AttackHigh()
@@ -62,7 +84,7 @@ public class PlayerCombat : MonoBehaviour
         foreach(Collider2D enemy in hitEnemies)
         {
             Debug.Log("Hit" + enemy.name);
-            enemy.GetComponent<Player2Combat>().TakeDamage(attackDamage);
+            enemy.GetComponent<Player2Combat>().TakeDamageHigh(attackDamage);
         }
 
     }
@@ -80,7 +102,7 @@ public class PlayerCombat : MonoBehaviour
         foreach (Collider2D enemy in hitEnemies)
         {
             Debug.Log("Hit" + enemy.name);
-            enemy.GetComponent<Player2Combat>().TakeDamage(attackDamage);
+            enemy.GetComponent<Player2Combat>().TakeDamageMid(attackDamage);
         }
 
     }
@@ -98,16 +120,36 @@ public class PlayerCombat : MonoBehaviour
         foreach (Collider2D enemy in hitEnemies)
         {
             Debug.Log("Hit" + enemy.name);
-            enemy.GetComponent<Player2Combat>().TakeDamage(attackDamage);
+            enemy.GetComponent<Player2Combat>().TakeDamageLow(attackDamage);
         }
 
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamageHigh(float damage)
     {
         currentHealth -= damage;
 
+        
+
+        if (currentHealth <= 0)
+            Die();
+    }
+
+    public void TakeDamageMid(float damage)
+    {
+        currentHealth -= damage/2;
+
         animator.SetTrigger("Mid Hurt");
+
+        if (currentHealth <= 0)
+            Die();
+    }
+
+    public void TakeDamageLow(float damage)
+    {
+        currentHealth -= damage;
+
+        
 
         if (currentHealth <= 0)
             Die();
@@ -116,9 +158,15 @@ public class PlayerCombat : MonoBehaviour
     void Die()
     {
         Debug.Log("" + this.name + " died");
-        GetComponent<SpriteRenderer>().enabled = false; //this is just a debug line to see the player disapear
-
+        otherPlayer.GetComponent<Player2Combat>().Victory();
         //Play death animation
+        
+    }
+
+    public void Victory()
+    {
+        //play victory animation
+
     }
 
     private void OnDrawGizmosSelected()
